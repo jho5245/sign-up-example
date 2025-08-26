@@ -41,6 +41,11 @@
     // 중복 확인 버튼 클릭
     btnCheckIdDupe.addEventListener('click', () => { checkId(true); });
 
+    /**
+     * 아이디 유효성을 검사합니다.
+     * @param {Boolean} _checkDuplicate 아이디 중복 확인 여부
+     * @returns 아이디가 유효하면 true, 이외의 경우 false
+     */
     function checkId(_checkDuplicate) {
         const id = inputID.value;
         // 공백 ID
@@ -72,14 +77,22 @@
         return false;
     }
 
-    // ID 중복 확인 함수
+    /**
+     * 이미 등록된 아이디인지 확인합니다.
+     * @param {String} id 확인할 아이디
+     * @returns 이미 등록된 경우 true, 이외의 경우 false
+     */
     function checkDuplicate(id) {
         return ACCOUNTS.accounts.some(account => {
             return account.id === id;
         });
     }
 
-    // ID 유효성 확인 함수
+    /**
+     * 아이디가 유효한지 정규식을 통해 확인합니다
+     * @param {String} id 확인할 아이디
+     * @returns 정규식을 만족하여 유효할 경우 true, 이외의 경우 false
+     */
     function validateID(id) {
         return REGEX_ID.test(id);
     }
@@ -106,7 +119,10 @@
     // 비밀번호 확인 입력 이벤트
     inputPWConfirm.addEventListener('input', checkPasswordConfirm);
 
-    // 비밀번호 확인
+    /**
+     * 비밀번호가 유효한지 확인합니다.
+     * @returns 비밀번호가 유효하면 true, 이외의 경우 false
+     */
     function checkPassword() {
         const password = inputPW.value;
         // 유효한 Password
@@ -127,7 +143,10 @@
         return false;
     }
 
-    // 비밀번호 확인란 확인
+    /**
+     * 비밀번호 입력란과 비밀번호 확인 입력란의 값이 같은지 확인합니다.
+     * @returns 비밀번호가 일치하면 true, 이외의 경우 false
+     */
     function checkPasswordConfirm() {
         const password = inputPW.value;
         const passwordConfirm = inputPWConfirm.value;
@@ -149,7 +168,11 @@
         return false;
     }
 
-    // 비밀번호 유효성 확인 함수
+    /**
+     * 비밀번호가 유효한지 정규식을 통해 확인합니다.
+     * @param {String} password 확인할 비밀번호
+     * @returns 정규식을 만족하여 유효할 경우 true, 이외의 경우 false
+     */
     function validatePassword(password) {
         return REGEX_PW.test(password);
     }
@@ -165,7 +188,10 @@
     // 이름 입력란 입력 이벤트
     inputName.addEventListener('input', checkName);
 
-    // 이름 확인
+    /**
+     * 이름이 공백인지 확인합니다.
+     * @returns 이름이 공백이 아닐 경우 true, 이외의 경우 false
+     */
     function checkName() {
         const name = inputName.value;
         // 유효한 이름
@@ -207,13 +233,20 @@
         }
     });
 
-    // 이메일 입력 여부 - 이메일ID와 도메인 전부 입력되어야 함
+    /**
+     * 이메일과 이메일 도메인 입력란이 모두 채워져있는지 확인합니다.
+     * @returns 이메일과 이메일 도메인 입력란이 모두 채워져있으면 true, 이외의 경우 false
+     */
     function emailEntered() {
         const email = inputEmail.value;
         const emailDomain = inputEmailDomain.value;
         return email && emailDomain && email.length > 0 && emailDomain.length > 0;
     }
 
+    /**
+     * 입력란에 입력된 이메일 주소를 반환합니다.
+     * @returns `email@domain` 형태의 문자열 혹은 {@link emailEntered()}가 false일 경우 null;
+     */
     function getEmail() {
         if (!emailEntered()) return null;
         return `${inputEmail.value}@${inputEmailDomain.value}`;
@@ -250,26 +283,41 @@
     /* ==============
         유틸
        ============== */
-    // 유효하지 않은 입력란에 대한 경고 표시
+    /**
+     * 입력란에 유효하지 않은 값이 들어갔을때 하단에 경고 메시지를 표시합니다.
+     * @param {String} warningSectionID 경고 메시지를 표시할 영역 div 식별자
+     * @param {String} message 표시할 경고 메시지
+     */
     function warn(warningSectionID, message) {
         const section = document.getElementById(warningSectionID);
         section.innerText = message;
     }
 
-    // 경고 표시 초기화
+    /**
+     * 입력란 하단의 경고 메시지를 숨깁니다.
+     * @param {String} warningSectionID 경고 메시지를 숨길 영역 div 식별자
+     */
     function resetWarning(warningSectionID) {
         warn(warningSectionID, "");
     }
 
-    // 비밀번호 해싱
+    /**
+     * 입력받은 비밀번호 문자열을 SHA-256으로 암호화합니다.
+     * @param {String} password 암호화할 문자열
+     * @returns SHA-256으로 암호화된 문자열
+     */
     function hashPassword(password) {
         const hashObject = new jsSHA("SHA-256", "TEXT", { numRounds: 1 });
         hashObject.update(password);
         return hashObject.getHash("HEX");
     }
 
-    // salt 생성
+    // salt용 문자열
     const chars = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+    /**
+     * SHA-256 암호화에 사용할 salt 문자열을 생성합니다.
+     * @returns 64글자 무작위 문자열
+     */
     function generateSalt() {
         let word = '';
         for (let i = 0; i < 64; i++) {
@@ -278,7 +326,14 @@
         return word;
     }
 
-    // 새 계정 등록
+    /**
+     * 입력받은 정보로 새 계정을 등록합니다
+     * @param {String} id 계정 식별자(아이디)
+     * @param {String} password 비밀번호
+     * @param {String} salt 비밀번호 암호화용 salt
+     * @param {String} name 이름
+     * @param {String} email 이메일 주소
+     */
     function registerAccount(id, password, salt, name, email) {
         const account = {
             id: id,
@@ -291,9 +346,4 @@
         console.log(`새 계정 등록됨: ${JSON.stringify(account)} (총 ${ACCOUNTS.accounts.length}명)`);
         console.log(ACCOUNTS.accounts);
     }
-
-    // // 비밀번호 일치 확인
-    // function passwordEquals(password, salt, hash) {
-    //     return hashPassword(password + salt) === hash;
-    // }
 })();
