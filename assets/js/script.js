@@ -6,8 +6,8 @@
         accounts: [
             {
                 id: "example1234",
-                password: "84af3416396292b23991dfd43f630b6394ed61af201a001001ab93bd57446600",
-                salt: 'sans',
+                password: "a8efe4d0c422f1d48e29c6f225d468785fdc84c379e7ae61ed7857510abef536",
+                salt: "t20rpwInhntiVvP2lolVNSjdCFg679z9XJbwOoiv505tnPmLbFWi39yp6zTsbD9M",
                 name: "example",
                 email: "example1234@example.com"
             }
@@ -269,11 +269,10 @@
     }
 
     // salt 생성
-    const chars = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+    const chars = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
     function generateSalt() {
-        const length = Math.floor(Math.random() * 4) + 3; // 3~6
         let word = '';
-        for (let i = 0; i < length; i++) {
+        for (let i = 0; i < 64; i++) {
             word += chars.charAt(Math.floor(Math.random() * chars.length));
         }
         return word;
