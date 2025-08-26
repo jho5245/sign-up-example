@@ -1,0 +1,108 @@
+html, body {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: rgb(235, 235, 235);
+}
+
+h1 {
+    margin-left: 30px;
+}
+
+button {
+    cursor: pointer;
+}
+
+input {
+    outline: none;
+}
+
+#sign-up {
+    background-color: rgb(255, 255, 255);
+    border-radius: 10px;
+    padding: 10px;
+    width: 600px;
+    margin: 100px auto;
+}
+
+#guide {
+    margin-left: 50px;
+    color: rgb(179, 179, 179);
+}
+
+label {
+    font-weight: bold;
+}
+
+/* 필수 입력 사항 '*' 모양 */
+.required {
+    color: red;
+}
+
+/* 입력란 구분 */
+div[id^="section"] {
+    margin: 10px 10%;
+}
+
+/* ID 입력란 */
+#input-id {
+    width: 74%;
+}
+
+/* 사용 가능한 ID span */
+#id-available {
+    color: rgb(79, 79, 255);
+}
+
+/* ID, 이메일 제외 입력란 */
+#input-password, #input-password-confirm, #input-name {
+    width: 90%;
+}
+
+/* 모든 입력란, 도메인 선택 리스트 */
+input[id^="input"], #domain-list {
+    padding: 10px;
+}
+
+/* 이메일, 도메인 입력란 */
+#input-email, #input-email-domain {
+    width: 130px;
+}
+
+/* 이메일 도메인 선택 리스트 */
+#domain-list {
+    width: 124px;
+}
+
+/* ID 중복 확인 버튼 */
+#btn-check-id-dupe {
+    background-color: rgb(156, 232, 255);
+    border: none;
+    border-radius: 5px;
+    padding: 10px;
+}
+
+/* 가입하기 버튼 */
+#btn-sign-up {
+    background-color: rgb(156, 232, 255);
+    border: none;
+    border-radius: 5px;
+    width: 30%;
+    padding: 10px;
+}
+
+/* 경고 메시지 */
+.warning {
+    color: red;
+    font-size: 13px;
+    height: 20px;
+}
+
+/* 잘못된 입력란 */
+.input-invalid {
+    border: solid 2px red;
+    border-radius: 3px;
+}

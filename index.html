@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign-Up Example</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+
+<body>
+    <div id="sign-up">
+
+        <h1>회원가입</h1>
+        <div id="guide">
+            <span class="required">*</span>표시 사항은 필수 입력 사항입니다.
+        </div>
+        <!--아이디 -->
+        <div id="section-id">
+            <label for="input-id">아이디</label><span class="required">*</span>
+            <div id="input-id-container">
+                <input id="input-id" placeholder="아이디 입력(문자, 숫자 포함 6-32자)">
+                <button id="btn-check-id-dupe">중복 확인</button>
+            </div>
+            <div class="warning" id="warning-id"></div>
+            <span id="id-available" style="visibility: hidden;">사용 가능한 ID입니다</span>
+        </div>
+        <!-- 비밀번호 -->
+        <div id="section-password">
+            <label for="input-password">비밀번호</label><span class="required">*</span>
+            <input id="input-password" type="password" placeholder="비밀번호 입력(문자, 숫자, 특수문자 최소 하나 포함 8-32자)">
+            <div class="warning" id="warning-password"></div>
+        </div>
+        <!-- 비밀번호 확인 -->
+        <div id="section-password">
+            <label for="input-password-confirm">비밀번호 확인</label><span class="required">*</span>
+            <input id="input-password-confirm" type="password" placeholder="비밀번호 재입력">
+            <div class="warning" id="warning-password-confirm"></div>
+        </div>
+        <!-- 이름 -->
+        <div id="section-name">
+            <label for="input-name">이름</label><span class="required">*</span>
+            <input id="input-name" placeholder="이름 입력">
+            <div class="warning" id="warning-name"></div>
+        </div>
+        <!-- 이메일 주소 -->
+        <div id="section-email">
+            <label for="input-email">이메일 주소</label>
+            <div id="email">
+                <input id="input-email"><span>@</span>
+                <input id="input-email-domain" disabled>
+                <select id="domain-list" required>
+                    <option disabled value="" selected>선택</option>
+                    <option value="naver.com">naver.com</option>
+                    <option value="hanmail.net">hanmail.net</option>
+                    <option value="google.com">google.com</option>
+                    <option value="nate.com">nate.com</option>
+                    <option value="custom">직접 입력</option>
+                </select>
+            </div>
+        </div>
+        <!-- 가입하기 버튼 -->
+        <div id="section-button">
+            <button type="submit" value="submit" id="btn-sign-up">가입하기</button>
+        </div>
+    </div>
+</body>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jsSHA/2.0.2/sha.js"></script>
+<script src="assets/js/script.js"></script>
+</html>
