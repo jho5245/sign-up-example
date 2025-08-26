@@ -89,7 +89,7 @@
     }
 
     /**
-     * 아이디가 유효한지 정규식을 통해 확인합니다
+     * 아이디가 유효한지 정규식을 통해 확인합니다.
      * @param {String} id 확인할 아이디
      * @returns 정규식을 만족하여 유효할 경우 true, 이외의 경우 false
      */
@@ -327,7 +327,7 @@
     }
 
     /**
-     * 입력받은 정보로 새 계정을 등록합니다
+     * 입력받은 정보로 새 계정을 등록합니다.
      * @param {String} id 계정 식별자(아이디)
      * @param {String} password 비밀번호
      * @param {String} salt 비밀번호 암호화용 salt
