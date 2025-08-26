@@ -284,6 +284,7 @@
         const account = {
             id: id,
             password: hashPassword(password + salt),
+            salt: salt,
             name: name,
             email: (email ? email : "")
         }
@@ -293,7 +294,7 @@
     }
 
     // // 비밀번호 일치 확인
-    // function passwordEquals(password, hash) {
-    //     return hashPassword(password) === hash;
+    // function passwordEquals(password, salt, hash) {
+    //     return hashPassword(password + salt) === hash;
     // }
 })();
