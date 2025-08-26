@@ -6,7 +6,8 @@
         accounts: [
             {
                 id: "example1234",
-                password: "5e884898da28047151d0e56f8dc6292773603d0d6aabbdd62a11ef721d1542d8",
+                password: "84af3416396292b23991dfd43f630b6394ed61af201a001001ab93bd57446600",
+                salt: 'sans',
                 name: "example",
                 email: "example1234@example.com"
             }
@@ -233,11 +234,12 @@
         if (!passed) return;
         const id = inputID.value;
         const password = inputPW.value;
+        const salt = generateSalt();
         const name = inputName.value;
         const email = getEmail();
         const userAnswer = confirm(`다음 정보로 가입합니다.\n아이디: ${id}\n이름: ${name} ${emailEntered() ? `,\n이메일 주소: ${email}` : ""}`);
         if (userAnswer) {
-            registerAccount(id, password, name, email);
+            registerAccount(id, password, salt, name, email);
             alert('가입이 완료되었습니다.');
         }
         else {
@@ -266,11 +268,22 @@
         return hashObject.getHash("HEX");
     }
 
+    // salt 생성
+    const chars = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+    function generateSalt() {
+        const length = Math.floor(Math.random() * 4) + 3; // 3~6
+        let word = '';
+        for (let i = 0; i < length; i++) {
+            word += chars.charAt(Math.floor(Math.random() * chars.length));
+        }
+        return word;
+    }
+
     // 새 계정 등록
-    function registerAccount(id, password, name, email) {
+    function registerAccount(id, password, salt, name, email) {
         const account = {
             id: id,
-            password: hashPassword(password),
+            password: hashPassword(password + salt),
             name: name,
             email: (email ? email : "")
         }
