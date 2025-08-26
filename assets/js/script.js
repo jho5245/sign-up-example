@@ -270,7 +270,7 @@
         const salt = generateSalt();
         const name = inputName.value;
         const email = getEmail();
-        const userAnswer = confirm(`다음 정보로 가입합니다.\n아이디: ${id}\n이름: ${name} ${emailEntered() ? `,\n이메일 주소: ${email}` : ""}`);
+        const userAnswer = confirm(`다음 정보로 가입합니다.\n아이디: ${id}\n이름: ${name} ${emailEntered() ? `\n이메일 주소: ${email}` : ""}`);
         if (userAnswer) {
             registerAccount(id, password, salt, name, email);
             alert('가입이 완료되었습니다.');
